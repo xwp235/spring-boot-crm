@@ -1,1 +1,9 @@
-Index Page 2
+@import gg.jte.Content
+
+@param Content sidebar
+
+@template.layout.page(
+sidebar=sidebar,
+content=@`content`,
+footer=@`footer`
+)
