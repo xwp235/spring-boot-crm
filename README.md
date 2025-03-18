@@ -18,6 +18,8 @@ gradle clean --warning-mode all
 
 #### 开始构建
 
+打包时一定要执行根目录下的clean,package或install
+
 ```bash
 ./gradlew.bat build --warning-mode all
 # 或
@@ -27,7 +29,7 @@ gradle build --warning-mode all
 #### 打包后的jar启动命令
 
 ```bash
-java -Dspring.profiles.active=prod -Duser.timezone=UTC -Dfile.encoding=UTF-8 -jar subtitle-translation-ai.jar D:\GithubRepos\subtitle-translation-ai\env
+java -Dspring.profiles.active=prod -Duser.timezone=UTC -Dfile.encoding=UTF-8 -jar spring-boot-crm.jar D:\courses\spring-boot-crm\env
 ```
 
 #### 当前项目支持配置

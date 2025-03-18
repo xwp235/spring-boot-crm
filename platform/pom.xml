@@ -23,7 +23,7 @@
     </dependencies>
 
     <build>
-        <finalName>subtitle-translation-ai</finalName>
+        <finalName>spring-boot-crm</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
