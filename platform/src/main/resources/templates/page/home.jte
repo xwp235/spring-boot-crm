@@ -4,23 +4,24 @@
 <p id="status"></p>
 
 <script>
-    let fileName = '';
+    let filename = '';
 
     /**
      * 拆分文件，每 2MB 进行拆分
      * @param {File} file - 需要上传的文件
      */
-    const uploadFileInChunks = (file) => {
+    const uploadFileInChunks = () => {
+        var file = fileInput.files[0]
+        console.log(file)
         const chunkSize = 1024 * 1024 * 2; // 2MB
         let start = 0;
         let chunkIndex = 0;
 
         while (start < file.size) {
             const chunk = file.slice(start, start + chunkSize);
-            console.log(chunk);
 
-            fileName = file.name;
-            uploadChunk(chunk, chunkIndex, fileName);
+            filename = file.name;
+            uploadChunk(chunk, chunkIndex, filename);
 
             start += chunkSize;
             chunkIndex++;
@@ -31,14 +32,15 @@
      * 对每一个拆分的文件进行上传（小文件上传）
      * @param {Blob} chunk - 当前分片数据
      * @param {number} chunkIndex - 分片索引
-     * @param {string} fileName - 文件名称
+     * @param {string} filename - 文件名称
      */
-    const uploadChunk = (chunk, chunkIndex, fileName) => {
+    const uploadChunk = (chunk, chunkIndex, filename) => {
         const formData = new FormData();
-        formData.append('chunk', chunk);
+        formData.append('chunkFile', chunk);
         formData.append('chunkIndex', chunkIndex);
-        formData.append('fileName', fileName);
+        formData.append('filename', filename);
 
+        console.log(formData)
         fetch('http://localhost:8080/upload-chunk', {
             method: 'POST',
             body: formData
@@ -53,7 +55,7 @@
      */
     const mergeFile = () => {
         const formData = new FormData();
-        formData.append('fileName', fileName);
+        formData.append('filename', filename);
 
         fetch('http://localhost:8080/merge-chunks', {
             method: 'POST',
