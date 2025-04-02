@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Map;
+
 @Controller
 public class PageController {
 
@@ -19,7 +21,11 @@ public class PageController {
     @GetMapping
     public String index(Model model) {
         var sidebar = renderTemplate("layout/sidebar.jte");
-        model.addAttribute("sidebar", sidebar);
+        var content = renderTemplate("page/home.jte");
+        model.addAllAttributes(Map.of(
+                "sidebar", sidebar,
+                "content", content
+        ));
         return "index";
     }
 
