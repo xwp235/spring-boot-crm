@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 public class TestController {
@@ -36,6 +38,7 @@ public class TestController {
     }
 
     private static final String TEMP_DIR = "D:\\upload\\";
+    private static final String TARGET_DIR = "D:\\upload\\result\\";
 
     @PostMapping("upload-chunk")
     public JsonResp uploadChunk(
@@ -54,4 +57,27 @@ public class TestController {
         return JsonResp.ok();
     }
 
+    @PostMapping("merge-chunks")
+    public JsonResp mergeChunks(@RequestParam String filename) throws IOException {
+        var dir = new File(TEMP_DIR + filename);
+        var targetDirFilepath = Paths.get(TARGET_DIR);
+        if (!Files.exists(targetDirFilepath)) {
+            Files.createDirectories(targetDirFilepath);
+        }
+        var mergedFilepath = Paths.get(TARGET_DIR, filename);
+        var chunkFiles = dir.listFiles();
+        try (var os = Files.newOutputStream(mergedFilepath)) {
+            if (Objects.nonNull(chunkFiles)) {
+                for (var i = 0; i < chunkFiles.length; i++) {
+                    var chunkFile = new File(dir, "chunk_" + i);
+                    var filepath = chunkFile.toPath();
+                    Files.copy(filepath, os);
+                    Files.deleteIfExists(filepath);
+                }
+            }
+        }
+
+        Files.delete(dir.toPath());
+        return JsonResp.ok("文件合并完成");
+    }
 }
