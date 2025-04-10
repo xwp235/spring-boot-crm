@@ -6,6 +6,7 @@ import com.xwplay.crm.common.config.serializer.LocalDateTimeSerializer;
 import com.xwplay.crm.common.config.serializer.ZonedDateTimeSerializer;
 import com.xwplay.crm.common.constants.AppConstants;
 import com.xwplay.crm.common.filters.EntryPointFilter;
+import io.vavr.jackson.datatype.VavrModule;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -64,6 +65,11 @@ public class AppConfig implements WebMvcConfigurer {
         simpleModule.addSerializer(ZonedDateTime.class, zonedDateTimeSerializer);
         simpleModule.addSerializer(LocalDateTime.class, localDateTimeSerializer);
         return simpleModule;
+    }
+
+    @Bean
+    com.fasterxml.jackson.databind.Module vavrModule() {
+        return new VavrModule();
     }
 
     @Bean

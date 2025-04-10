@@ -51,6 +51,8 @@
         <json-path.version>2.9.0</json-path.version>
         <commons-fileupload2-jakarta-servlet6.version>2.0.0-M2</commons-fileupload2-jakarta-servlet6.version>
         <openai-java.version>0.30.0</openai-java.version>
+        <resilience4j-spring-boot3.version>2.3.0</resilience4j-spring-boot3.version>
+        <vavr-jackson.version>0.10.3</vavr-jackson.version>
 
         <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
@@ -217,6 +219,26 @@
                 <version>${json-path.version}</version>
             </dependency>
 
+            <!-- https://resilience4j.readme.io -->
+            <!-- https://github.com/resilience4j/resilience4j-spring-boot3-demo -->
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-spring-boot3</artifactId>
+                <version>${resilience4j-spring-boot3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-all</artifactId>
+                <version>${resilience4j-spring-boot3.version}</version>
+            </dependency>
+
+            <!-- https://docs.vavr.io -->
+            <!-- https://github.com/vavr-io/vavr-jackson -->
+            <dependency>
+                <groupId>io.vavr</groupId>
+                <artifactId>vavr-jackson</artifactId>
+                <version>${vavr-jackson.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
