@@ -3,6 +3,10 @@
 <button onclick="mergeFile()">合并文件</button>
 <p id="status"></p>
 
+<h1 class="text-3xl font-bold underline">
+    Hello world!
+</h1>
+
 <script>
     let filename = '';
 

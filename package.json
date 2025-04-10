@@ -1,0 +1,14 @@
+{
+    "name": "spring-boot-crm",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "pnpm dlx @tailwindcss/cli -i tailwindcss/input.css -o platform/src/main/resources/static/css/tailwind.css --watch",
+        "build": "pnpm dlx @tailwindcss/cli -i tailwindcss/input.css -o platform/src/main/resources/static/css/tailwind.min.css --minify"
+    },
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.1.3",
+        "autoprefixer": "^10.4.21",
+        "postcss": "^8.5.3",
+        "tailwindcss": "^4.1.3"
+    }
+}
