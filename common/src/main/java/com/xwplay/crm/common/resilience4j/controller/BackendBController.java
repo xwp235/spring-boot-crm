@@ -112,6 +112,7 @@ public class BackendBController {
         return Decorators.ofSupplier(supplier)
                 .withCircuitBreaker(circuitBreaker)
                 .withBulkhead(bulkhead)
+                .withRateLimiter(rateLimiter)
                 .withRetry(retry)
                 .get();
     }
