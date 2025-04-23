@@ -3,7 +3,7 @@
 <button onclick="mergeFile()">合并文件</button>
 <p id="status"></p>
 
-<h1 class="text-3xl font-bold underline">
+<h1 class="text-3xl font-bold underline bg-primary-1">
     Hello world!
 </h1>
 
